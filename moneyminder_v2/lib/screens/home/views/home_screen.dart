@@ -1,11 +1,26 @@
 import 'dart:math';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:moneyminder_v2/screens/home/views/main_screen.dart';
+import 'package:moneyminder_v2/screens/stats/stats.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+
+  var widgetList = [
+    MainScreen(),
+    StatsScreen(),
+  ];
+
+  int index = 0;
+  late Color selectedItem = Colors.blue;
+  Color unselectedItem = Colors.grey;
 
   @override
   Widget build(BuildContext context) {
@@ -16,17 +31,31 @@ class HomeScreen extends StatelessWidget {
           top: Radius.circular(30)
         ),
         child: BottomNavigationBar(
-          backgroundColor: Colors.white,
+          onTap:(value) {
+            setState(() {
+              index = value;
+            });
+            print(value);
+          },
+          //fixedColor: Colors.red,
+          //backgroundColor: Colors.white,
           showSelectedLabels: false,
           showUnselectedLabels: false,
+          selectedItemColor: Colors.yellow,
           elevation: 3,
-          items: const [
+          items: [
             BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.home), 
+              icon: Icon(
+                CupertinoIcons.home,
+                color: index == 0 ? selectedItem : unselectedItem
+              ),
               label: 'Home'
             ),
             BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.graph_square_fill), 
+              icon: Icon(
+                CupertinoIcons.graph_square_fill,
+                color: index == 1 ? selectedItem : unselectedItem
+              ), 
               label: 'Stats'
             )
           ],
@@ -55,7 +84,9 @@ class HomeScreen extends StatelessWidget {
           ),
         )
       ),
-      body: const MainScreen(),
+      body: index == 0
+        ? MainScreen()
+        : StatsScreen()
     );
   }
 }
