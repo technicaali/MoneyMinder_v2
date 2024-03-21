@@ -10,12 +10,15 @@ class MyAppView extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "Money Minder",
       theme: ThemeData(
-          colorScheme: ColorScheme.light(
-              background: Colors.grey.shade100,
-              onBackground: Colors.black,
-              primary: Color(0xFF00B2E7),
-              secondary: Color(0xFFE064F7),
-              tertiary: Color(0xFFFF8D6C))),
+        colorScheme: ColorScheme.light(
+            background: Colors.grey.shade100,
+            onBackground: Colors.black,
+            primary: Color(0xFF00B2E7),
+            secondary: Color(0xFFE064F7),
+            tertiary: Color(0xFFFF8D6C),
+            outline: Colors.grey
+        )
+      ),
       home: const HomeScreen(),
     );
   }
