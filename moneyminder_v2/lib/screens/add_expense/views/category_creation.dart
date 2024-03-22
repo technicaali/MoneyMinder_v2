@@ -215,10 +215,11 @@ Future getCategoryCreation(BuildContext context) {
                                           categoryNameController.text;
                                       category.icon = iconSelected;
                                       category.color = categoryColor.value;
-                                      context
-                                          .read<CreateCategoryBloc>()
-                                          .add(CreateCategory(category));
                                     });
+
+                                    context
+                                        .read<CreateCategoryBloc>()
+                                        .add(CreateCategory(category));
                                   },
                                   style: TextButton.styleFrom(
                                       backgroundColor: Colors.black,
