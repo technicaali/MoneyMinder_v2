@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 
@@ -25,8 +26,6 @@ class _AddExpenseState extends State<AddExpense> {
     'tech',
     'travel'
   ];
-
-  String iconSelected = '';
 
   @override
   void initState() {
@@ -98,6 +97,8 @@ class _AddExpenseState extends State<AddExpense> {
                         context: context, 
                         builder: (ctx) {
                           bool isExpanded = false;
+                          String iconSelected = '';
+                          Color categoryColor = Colors.white;
                           return StatefulBuilder(
                             builder: (context, setState) {
                               return AlertDialog(
@@ -127,12 +128,56 @@ class _AddExpenseState extends State<AddExpense> {
                                       const SizedBox(height: 16,),
                                       TextFormField(
                                         // controller: dateController,
+                                        onTap: () {
+                                          showDialog(
+                                            context: context, 
+                                            builder: (ctx2) {
+                                              return AlertDialog(
+                                                content: Column(
+                                                  mainAxisSize: MainAxisSize.min,
+                                                  children: [
+                                                    ColorPicker(
+                                                      pickerColor: categoryColor,
+                                                      onColorChanged: (value) {
+                                                        setState (() {
+                                                          categoryColor = value;
+                                                        });
+                                                      },
+                                                    ),
+                                                    SizedBox(
+                                                      width: double.infinity,
+                                                      height: 50,
+                                                      child: TextButton(
+                                                        onPressed: () {
+                                                          Navigator.pop(ctx2);
+                                                        }, 
+                                                        style: TextButton.styleFrom(
+                                                          backgroundColor: Colors.black,
+                                                          shape: RoundedRectangleBorder(
+                                                            borderRadius: BorderRadius.circular(12)
+                                                          )
+                                                        ),
+                                                        child: const Text(
+                                                          'Save',
+                                                          style: TextStyle(
+                                                            fontSize: 22,
+                                                            color: Colors.white
+                                                          )
+                                                        )
+                                                      ),
+                                                    )
+                                                  ],
+                                                ),
+                                              );
+                                            }
+                                          );
+                                        },
                                         textAlignVertical: TextAlignVertical.center,
-                                        // readOnly: true,
+                                        readOnly: true,
                                         decoration: InputDecoration(
                                           isDense: true,
                                           filled: true,
-                                          fillColor: Colors.white,
+                                          fillColor: categoryColor,
                                           hintText: ('Color'),
                                           border: OutlineInputBorder(
                                             borderRadius: BorderRadius.circular(12),
@@ -213,6 +258,30 @@ class _AddExpenseState extends State<AddExpense> {
                                           ),
                                         )
                                       : Container(),
+                                      const SizedBox(height: 16,),
+                                      SizedBox(
+                                        width: double.infinity,
+                                        height: kToolbarHeight,
+                                        child: TextButton(
+                                          onPressed: () {
+                                            // Create category object and POP
+                                            Navigator.pop(context);
+                                          }, 
+                                          style: TextButton.styleFrom(
+                                            backgroundColor: Colors.black,
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(12)
+                                            )
+                                          ),
+                                          child: const Text(
+                                            'Save',
+                                            style: TextStyle(
+                                              fontSize: 22,
+                                              color: Colors.white
+                                            )
+                                          )
+                                        ),
+                                      )
                                     ],
                                   ),
                                 )
