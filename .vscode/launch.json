@@ -1,0 +1,48 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "moneyminder_v2",
+            "cwd": "moneyminder_v2",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "moneyminder_v2 (profile mode)",
+            "cwd": "moneyminder_v2",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "moneyminder_v2 (release mode)",
+            "cwd": "moneyminder_v2",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        },
+        {
+            "name": "expense_repository",
+            "cwd": "moneyminder_v2\\packages\\expense_repository",
+            "request": "launch",
+            "type": "dart"
+        },
+        {
+            "name": "expense_repository (profile mode)",
+            "cwd": "moneyminder_v2\\packages\\expense_repository",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "profile"
+        },
+        {
+            "name": "expense_repository (release mode)",
+            "cwd": "moneyminder_v2\\packages\\expense_repository",
+            "request": "launch",
+            "type": "dart",
+            "flutterMode": "release"
+        }
+    ]
+}
